@@ -33,10 +33,9 @@ public class CarPageableService {
     private Sort getSort(List<String> sort) {
         List<Sort.Order> orders = new ArrayList<Sort.Order>();
         for (int i = 0; i < sort.size(); i += 2) {
-            String[] props = sort.get(i).split(",");
-            String prop = props[0];
-            String direction = props.length < 2 ? "asc" : props[1];
-
+            String prop = sort.get(i);
+            String direction = sort.get(i + 1);
+            
             orders.add(new Sort.Order(Sort.Direction.fromString(direction), prop));
         }
         return Sort.by(orders);
